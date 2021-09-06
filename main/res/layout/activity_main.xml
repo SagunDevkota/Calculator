@@ -226,7 +226,7 @@
 
             <Button
                 android:id="@+id/buttonSwap"
-                android:layout_width="wrap_content"
+                android:layout_width="83dp"
                 android:layout_height="match_parent"
                 android:backgroundTint="#000000"
                 android:text="⟳"

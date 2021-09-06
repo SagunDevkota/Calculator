@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList<String> historyQuestion = new ArrayList<>();
     ArrayList<String> historyResult = new ArrayList<>();
+    boolean dot = false;
+    boolean equals = false;
+    DecimalFormat numberFormat = new DecimalFormat("########.######");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
                         result.setText("");
                     }
                 }
+                equals = true;
+                dot = true;
             }
         });
     }
@@ -162,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                 // to add previous question in adapter view
                 if(finalResult != null) {
                     // to prevent value error.
-                    result.setText("" + finalResult);
+                    result.setText("" + numberFormat.format(finalResult));
                 }
                 historyResult.add(result.getText().toString());
                 recyclerCall();
@@ -184,109 +190,176 @@ public class MainActivity extends AppCompatActivity {
         button0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equals){
+                    result.setText("");
+                    equals = false;
+                }
                 result.setText(result.getText().toString()+"0");
             }
         });
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equals){
+                    result.setText("");
+                    equals = false;
+                }
+
                 result.setText(result.getText().toString()+"1");
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(equals){
+                    result.setText("");
+                    equals = false;
+                }
+
                 result.setText(result.getText().toString()+"2");
             }
         });
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equals){
+                    result.setText("");
+                    equals = false;
+                }
                 result.setText(result.getText().toString()+"3");
             }
         });
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equals){
+                    result.setText("");
+                    equals = false;
+                }
                 result.setText(result.getText().toString()+"4");
             }
         });
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equals){
+                    result.setText("");
+                    equals = false;
+                }
                 result.setText(result.getText().toString()+"5");
             }
         });
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equals){
+                    result.setText("");
+                    equals = false;
+                }
                 result.setText(result.getText().toString()+"6");
             }
         });
         button7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equals){
+                    result.setText("");
+                    equals = false;
+                }
                 result.setText(result.getText().toString()+"7");
             }
         });
         button8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equals){
+                    result.setText("");
+                    equals = false;
+                }
                 result.setText(result.getText().toString()+"8");
             }
         });
         button9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equals){
+                    result.setText("");
+                    equals = false;
+                }
                 result.setText(result.getText().toString()+"9");
             }
         });
         buttonDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                result.setText(result.getText().toString()+".");
+                if(equals){
+                    result.setText("");
+                    equals = false;
+                    dot = false;
+                }
+                if(dot==false) {
+                    result.setText(result.getText().toString() + ".");
+                    dot = true;
+                    equals = false;
+                }
             }
         });
         buttonModulo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 result.setText(result.getText().toString()+"%");
+                dot = false;
+                equals = false;
             }
         });
         buttonDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 result.setText(result.getText().toString()+"/");
+                dot = false;
+                equals = false;
             }
         });
         buttonMultiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 result.setText(result.getText().toString()+"*");
+                dot = false;
+                equals = false;
             }
         });
         buttonMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 result.setText(result.getText().toString()+"-");
+                dot = false;
+                equals = false;
             }
         });
         buttonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 result.setText(result.getText().toString()+"+");
+                dot = false;
+                equals = false;
             }
         });
         buttonAC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 result.setText("");
+                dot = false;
+                equals = false;
             }
         });
         buttonDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(result.getText().toString().length()>0) {
+                    if(result.getText().toString().charAt(result.getText().toString().length()-1)=='.'){
+                        dot = false;
+                    }
                     result.setText(result.getText().toString().substring(0, result.getText().toString().length() - 1));
                 }
             }
